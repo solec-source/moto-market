@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MotoMarket | Pewne Samochody Używane i Nowe z Gwarancją</title>
+  <meta name="description" content="Nowoczesny salon i komis samochodowy online. Sprawdzone auta z polskiego rynku, raporty historii, finansowanie leasing/kredyt i natychmiastowa wycena.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Top Info Bar -->
+  <div class="top-bar">
+    <div class="container top-bar-content">
+      <div class="top-bar-left">
+        <span>📍 Al. Jerozolimskie 220, Warszawa</span>
+        <span class="divider">•</span>
+        <span>🕒 Pon - Sob: 9:00 - 19:00</span>
+      </div>
+      <div class="top-bar-right">
+        <span>📞 Infolinia: <a href="tel:+48221234567">+48 22 123 45 67</a></span>
+        <span class="divider">•</span>
+        <span>✉️ kontakt@motomarket.pl</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="container nav-content">
+      <a href="#" class="brand-logo">
+        <span class="logo-icon">🏎️</span>
+        <span class="logo-text">Moto<span class="accent-text">Market</span></span>
+      </a>
+
+      <ul class="nav-links">
+        <li><a href="#oferta" class="active">Katalog Aut</a></li>
+        <li><a href="#wycena">Wycena Online</a></li>
+        <li><a href="#kalkulator">Finansowanie</a></li>
+        <li><a href="#dlaczego-my">Dlaczego My</a></li>
+        <li><a href="#opinie">Opinie</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+      </ul>
+
+      <div class="nav-cta">
+        <a href="#wycena" class="btn btn-primary">Sprzedaj Samochód</a>
+      </div>
+
+      <button class="mobile-toggle" id="mobileMenuBtn" aria-label="Menu mobilne">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero-section">
+    <div class="container hero-container">
+      <div class="hero-text">
+        <div class="hero-badge">⭐ Certyfikowane Samochody z Gwarancją do 24 Miesięcy</div>
+        <h1 class="hero-title">Odkryj Swój Następny Samochód <span class="gradient-text">Bez Ryzyka</span></h1>
+        <p class="hero-subtitle">
+          Każdy egzemplarz weryfikujemy w 120 punktach kontrolnych. 
+          Pewna historia, gwarancja przebiegu i finansowanie dopasowane do Twojego budżetu.
+        </p>
+
+        <!-- Quick Search Bar -->
+        <div class="search-box">
+          <div class="search-field">
+            <label for="filterBrandQuick">Marka</label>
+            <select id="filterBrandQuick">
+              <option value="">Wszystkie marki</option>
+              <option value="Audi">Audi</option>
+              <option value="BMW">BMW</option>
+              <option value="Cupra">Cupra</option>
+              <option value="Ford">Ford</option>
+              <option value="Hyundai">Hyundai</option>
+              <option value="Kia">Kia</option>
+              <option value="Mercedes-Benz">Mercedes-Benz</option>
+              <option value="Porsche">Porsche</option>
+              <option value="Skoda">Skoda</option>
+              <option value="Tesla">Tesla</option>
+              <option value="Toyota">Toyota</option>
+              <option value="Volkswagen">Volkswagen</option>
+              <option value="Volvo">Volvo</option>
+            </select>
+          </div>
+
+          <div class="search-field">
+            <label for="filterBodyQuick">Nadwozie</label>
+            <select id="filterBodyQuick">
+              <option value="">Wszystkie typy</option>
+              <option value="SUV">SUV</option>
+              <option value="Sedan">Sedan</option>
+              <option value="Kombi">Kombi</option>
+              <option value="Hatchback">Hatchback</option>
+            </select>
+          </div>
+
+          <div class="search-field">
+            <label for="filterFuelQuick">Paliwo</label>
+            <select id="filterFuelQuick">
+              <option value="">Dowolne</option>
+              <option value="Benzyna">Benzyna</option>
+              <option value="Diesel">Diesel</option>
+              <option value="Hybryda">Hybryda</option>
+              <option value="Elektryczny">Elektryczny</option>
+            </select>
+          </div>
+
+          <div class="search-field">
+            <label for="filterMaxPriceQuick">Maks. cena (PLN)</label>
+            <select id="filterMaxPriceQuick">
+              <option value="">Bez limitu</option>
+              <option value="80000">do 80 000 zł</option>
+              <option value="120000">do 120 000 zł</option>
+              <option value="160000">do 160 000 zł</option>
+              <option value="220000">do 220 000 zł</option>
+            </select>
+          </div>
+
+          <button class="btn btn-accent btn-search" id="btnQuickSearch">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Szukaj aut
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Statistics Counter Bar -->
+  <section class="stats-section">
+    <div class="container stats-grid">
+      <div class="stat-card">
+        <div class="stat-num">1 850+</div>
+        <div class="stat-label">Sprzedanych pojazdów</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">120 pkt</div>
+        <div class="stat-label">Rygorystyczna inspekcja DEKRA</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">0 zł</div>
+        <div class="stat-label">Wkładu własnego w leasingu</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4.9 / 5</div>
+        <div class="stat-label">Średnia ocen zadowolonych klientów</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Catalog Section -->
+  <section class="catalog-section" id="oferta">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="subheading">Sprawdzone samochody</span>
+          <h2 class="section-title">Aktualna Oferta Aut Na Sprzedaż</h2>
+        </div>
+        <div class="catalog-stats">
+          Znaleziono: <strong id="carCount">0</strong> pojazdów
+        </div>
+      </div>
+
+      <!-- Filters & Sorting Control Bar -->
+      <div class="controls-panel">
+        <div class="category-pills" id="categoryPills">
+          <button class="pill active" data-category="all">Wszystkie</button>
+          <button class="pill" data-category="SUV">SUV-y</button>
+          <button class="pill" data-category="Sedan">Sedany</button>
+          <button class="pill" data-category="Kombi">Kombi</button>
+          <button class="pill" data-category="Hybryda">Hybrydy & EV</button>
+          <button class="pill" data-category="under100k">Do 100 000 zł</button>
+        </div>
+
+        <div class="search-and-sort">
+          <div class="search-input-wrapper">
+            <input type="text" id="textSearchInput" placeholder="Wpisz model, np. Audi A4, BMW 3...">
+            <span class="search-icon">🔍</span>
+          </div>
+
+          <div class="sort-wrapper">
+            <label for="sortBySelect">Sortuj:</label>
+            <select id="sortBySelect">
+              <option value="featured">Polecane</option>
+              <option value="price-asc">Cena: od najniższej</option>
+              <option value="price-desc">Cena: od najwyższej</option>
+              <option value="year-desc">Rocznik: najnowsze</option>
+              <option value="mileage-asc">Przebieg: najniższy</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cars Grid -->
+      <div class="cars-grid" id="carsGrid">
+        <!-- Rendered dynamically via app.js -->
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState" style="display: none;">
+        <div class="empty-icon">🚗💨</div>
+        <h3>Brak wyników spełniających kryteria</h3>
+        <p>Spróbuj zmienić parametry filtrów lub zresetuj wyszukiwanie.</p>
+        <button class="btn btn-secondary" id="btnResetFilters">Wyczyść wszystkie filtry</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Car Valuation Tool (Wycena) -->
+  <section class="valuation-section" id="wycena">
+    <div class="container">
+      <div class="valuation-wrapper">
+        <div class="valuation-info">
+          <span class="subheading">Szybka sprzedaż</span>
+          <h2>Chcesz Sprzedać Lub Wymienić Swój Samochód?</h2>
+          <p>
+            Skorzystaj z naszego inteligentnego algorytmu wyceny rynkowej bazującego na danych transakcyjnych 
+            oraz modelach uczenia maszynowego (sprawdź też nasz notatnik analityczny w repozytorium!).
+          </p>
+          <ul class="valuation-perks">
+            <li>✓ Wycena wstępna w 60 sekund online</li>
+            <li>✓ Płatność przelewem natychmiastowym lub gotówką</li>
+            <li>✓ Odbiór samochodu z dowolnego miejsca w Polsce</li>
+            <li>✓ Pomoc w zamknięciu leasingu lub kredytu</li>
+          </ul>
+        </div>
+
+        <div class="valuation-card">
+          <h3>Kalkulator Szybkiej Wyceny</h3>
+          <form id="valuationForm">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="valBrand">Marka</label>
+                <select id="valBrand" required>
+                  <option value="">Wybierz markę</option>
+                  <option value="Audi">Audi</option>
+                  <option value="BMW">BMW</option>
+                  <option value="Ford">Ford</option>
+                  <option value="Kia">Kia</option>
+                  <option value="Mercedes-Benz">Mercedes-Benz</option>
+                  <option value="Skoda">Skoda</option>
+                  <option value="Toyota">Toyota</option>
+                  <option value="Volkswagen">Volkswagen</option>
+                  <option value="Volvo">Volvo</option>
+                  <option value="Inna">Inna marka</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label for="valYear">Rok produkcji</label>
+                <select id="valYear" required>
+                  <option value="">Wybierz rok</option>
+                  <option value="2024">2024</option>
+                  <option value="2023">2023</option>
+                  <option value="2022">2022</option>
+                  <option value="2021">2021</option>
+                  <option value="2020">2020</option>
+                  <option value="2019">2019</option>
+                  <option value="2018">2018</option>
+                  <option value="2017">2017</option>
+                  <option value="2016">2016</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="valMileage">Przebieg (km)</label>
+                <input type="number" id="valMileage" placeholder="np. 75000" min="0" max="500000" required>
+              </div>
+              <div class="form-group">
+                <label for="valFuel">Rodzaj paliwa</label>
+                <select id="valFuel" required>
+                  <option value="Benzyna">Benzyna</option>
+                  <option value="Diesel">Diesel</option>
+                  <option value="Hybryda">Hybryda</option>
+                  <option value="Elektryczny">Elektryczny</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="valCondition">Stan pojazdu</label>
+              <select id="valCondition">
+                <option value="idealny">Idealny (bezwypadkowy, serwis ASO)</option>
+                <option value="bardzo_dobry">Bardzo dobry (drobne ślady użytkowania)</option>
+                <option value="dobry">Dobry (do drobnych poprawek lakierniczych)</option>
+              </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block">Oszacuj Wartość Auta</button>
+          </form>
+
+          <!-- Result Area -->
+          <div class="valuation-result" id="valuationResult" style="display: none;">
+            <div class="val-result-header">Szacunkowa wartość rynkowa:</div>
+            <div class="val-price-range" id="valPriceDisplay">0 zł</div>
+            <p class="val-note">Wycena oparta o aktualny algorytm korelacji wieku, przebiegu i segmentu.</p>
+            <button class="btn btn-accent btn-sm" id="btnBookInspection">Umów bezpłatne oględziny</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Financing Calculator -->
+  <section class="calculator-section" id="kalkulator">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Elastyczne Płatności</span>
+        <h2 class="section-title">Kalkulator Raty Leasingu i Kredytu</h2>
+        <p class="section-desc">Dopasuj parametry finansowania do swoich możliwości. Decyzja nawet w 2 godziny.</p>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-inputs">
+          <div class="range-group">
+            <div class="range-label">
+              <span>Wartość pojazdu:</span>
+              <span class="range-val" id="calcPriceVal">120 000 zł</span>
+            </div>
+            <input type="range" id="calcPriceRange" min="30000" max="350000" step="5000" value="120000">
+            <div class="range-limits">
+              <span>30 000 zł</span>
+              <span>350 000 zł</span>
+            </div>
+          </div>
+
+          <div class="range-group">
+            <div class="range-label">
+              <span>Wpłata własna (<span id="calcDepositPercent">20%</span>):</span>
+              <span class="range-val" id="calcDepositVal">24 000 zł</span>
+            </div>
+            <input type="range" id="calcDepositRange" min="0" max="50" step="5" value="20">
+            <div class="range-limits">
+              <span>0% (0 zł)</span>
+              <span>50%</span>
+            </div>
+          </div>
+
+          <div class="range-group">
+            <div class="range-label">
+              <span>Okres finansowania:</span>
+              <span class="range-val" id="calcMonthsVal">48 miesięcy</span>
+            </div>
+            <input type="range" id="calcMonthsRange" min="12" max="84" step="12" value="48">
+            <div class="range-limits">
+              <span>12 mies.</span>
+              <span>84 mies.</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="calc-output">
+          <div class="calc-badge">Szacunkowa rata</div>
+          <div class="monthly-price" id="calcMonthlyResult">1 420 zł <span class="netto">/ mies. netto</span></div>
+          <div class="calc-details">
+            <div class="calc-detail-row">
+              <span>Kwota finansowania:</span>
+              <strong id="calcFinancedAmount">96 000 zł</strong>
+            </div>
+            <div class="calc-detail-row">
+              <span>Wykup końcowy (15%):</span>
+              <strong id="calcBuyoutAmount">18 000 zł</strong>
+            </div>
+            <div class="calc-detail-row">
+              <span>Oprocentowanie orientacyjne:</span>
+              <strong>WIBOR + 2.9%</strong>
+            </div>
+          </div>
+          <a href="#kontakt" class="btn btn-primary btn-block">Zapytaj o Ofertę Finansowania</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Choose Us -->
+  <section class="features-section" id="dlaczego-my">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Standardy MotoMarket</span>
+        <h2 class="section-title">Dlaczego Klienci Nam Ufają?</h2>
+      </div>
+
+      <div class="features-grid">
+        <div class="feature-box">
+          <div class="feature-icon">🛡️</div>
+          <h3>Gwarancja Techniczna</h3>
+          <p>Każde auto objęte jest pisemną gwarancją mechaniczną od 6 do 24 miesięcy na silnik, skrzynię biegów i podzespoły.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">📋</div>
+          <h3>Certyfikat Historii</h3>
+          <p>Do każdego pojazdu dołączamy pełny raport z rejestrów CEPiK, CarVertical oraz historię serwisową ASO.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">🚚</div>
+          <h3>Dostawa Pod Drzwi</h3>
+          <p>Kup samochód w 100% online – dostarczymy go bezpieczną lawetą pod Twój dom w dowolnym miejscu w Polsce.</p>
+        </div>
+
+        <div class="feature-box">
+          <div class="feature-icon">🔄</div>
+          <h3>14 Dni Na Zwrot</h3>
+          <p>Kupuj bez stresu. Masz 14 dni lub 500 km na przetestowanie samochodu. Jeśli nie spełni oczekiwań, zwracamy środki.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="testimonials-section" id="opinie">
+    <div class="container">
+      <div class="section-header text-center">
+        <span class="subheading">Głosy Naszych Klientów</span>
+        <h2 class="section-title">Prawdziwe Doświadczenia Kupujących</h2>
+      </div>
+
+      <div class="testimonials-grid">
+        <div class="testi-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testi-quote">"Kupiłem tu Audi A4 z 2020 roku. Stan idealny, zgodny z raportem rzeczoznawcy co do milimetra lakieru. Finansowanie załatwione w 1 dzień roboczy."</p>
+          <div class="testi-author">
+            <div class="author-avatar">MP</div>
+            <div>
+              <strong>Michał P.</strong>
+              <span>Kupione: Audi A4 Avant</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testi-quote">"Sprzedałem swój stary samochód w rozliczeniu za Toyotę Corollę Hybrid. Wycena przez internet była bardzo zbliżona do końcowej propozycji na miejscu."</p>
+          <div class="testi-author">
+            <div class="author-avatar">AK</div>
+            <div>
+              <strong>Anna K.</strong>
+              <span>Kupione: Toyota Corolla TS</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="testi-card">
+          <div class="stars">⭐⭐⭐⭐⭐</div>
+          <p class="testi-quote">"Pełen profesjonalizm. Doradca przygotował mi symulację leasingu dla trzech różnych aut, a jazda próbna bez żadnego pośpiechu. Zdecydowanie polecam!"</p>
+          <div class="testi-author">
+            <div class="author-avatar">TW</div>
+            <div>
+              <strong>Tomasz W.</strong>
+              <span>Kupione: BMW Seria 3</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact & Location Section -->
+  <section class="contact-section" id="kontakt">
+    <div class="container">
+      <div class="contact-wrapper">
+        <div class="contact-info">
+          <span class="subheading">Skontaktuj się z nami</span>
+          <h2>Jesteśmy Do Twojej Dyspozycji</h2>
+          <p>Masz pytania dotyczące konkretnego auta, finansowania lub chcesz zarezerwować jazdę próbną?</p>
+
+          <div class="info-items">
+            <div class="info-item">
+              <span class="item-icon">📍</span>
+              <div>
+                <strong>Nasz Salon Główny</strong>
+                <p>Al. Jerozolimskie 220, 02-486 Warszawa</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="item-icon">📞</span>
+              <div>
+                <strong>Telefon Bezpośredni</strong>
+                <p>+48 22 123 45 67 (Dział Sprzedaży)</p>
+              </div>
+            </div>
+
+            <div class="info-item">
+              <span class="item-icon">✉️</span>
+              <div>
+                <strong>Adres E-mail</strong>
+                <p>kontakt@motomarket.pl</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-card">
+          <h3>Napisz Do Nas</h3>
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="contactName">Imię i Nazwisko</label>
+              <input type="text" id="contactName" placeholder="Jan Kowalski" required>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="contactEmail">Adres E-mail</label>
+                <input type="email" id="contactEmail" placeholder="jan@example.com" required>
+              </div>
+              <div class="form-group">
+                <label for="contactPhone">Numer Telefonu</label>
+                <input type="tel" id="contactPhone" placeholder="+48 500 000 000" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="contactMessage">Wiadomość / Interesujący Model</label>
+              <textarea id="contactMessage" rows="4" placeholder="Dzień dobry, interesuje mnie oferta pojazdu..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Wyślij Zapytanie</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Car Details Modal -->
+  <div class="modal" id="carModal" aria-hidden="true">
+    <div class="modal-overlay" id="modalOverlay"></div>
+    <div class="modal-container">
+      <button class="modal-close" id="modalCloseBtn" aria-label="Zamknij">&times;</button>
+      <div class="modal-body" id="modalContent">
+        <!-- Rendered via JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="toastMessage"></div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container footer-content">
+      <div class="footer-col">
+        <a href="#" class="brand-logo">
+          <span class="logo-icon">🏎️</span>
+          <span class="logo-text">Moto<span class="accent-text">Market</span></span>
+        </a>
+        <p class="footer-desc">
+          Nowoczesna platforma zakupu i sprzedaży samochodów używanych z rzetelną weryfikacją techniczną oraz gwarancją.
+        </p>
+      </div>
+
+      <div class="footer-col">
+        <h4>Szybkie Linki</h4>
+        <ul>
+          <li><a href="#oferta">Wszystkie Samochody</a></li>
+          <li><a href="#wycena">Wycena Twojego Auta</a></li>
+          <li><a href="#kalkulator">Kalkulator Raty</a></li>
+          <li><a href="#dlaczego-my">Program Gwarancyjny</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Popularne Marki</h4>
+        <ul>
+          <li><a href="#oferta" onclick="filterByBrandDirect('BMW')">BMW</a></li>
+          <li><a href="#oferta" onclick="filterByBrandDirect('Audi')">Audi</a></li>
+          <li><a href="#oferta" onclick="filterByBrandDirect('Toyota')">Toyota</a></li>
+          <li><a href="#oferta" onclick="filterByBrandDirect('Mercedes-Benz')">Mercedes-Benz</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <h4>Notatnik & Kod</h4>
+        <p class="footer-desc">
+          Projekt wyposażony w notatnik analizy danych Jupyter (Python / Pandas / Scikit-Learn) dostępny w repozytorium GitHub.
+        </p>
+        <a href="https://github.com/solec-source/moto-market" target="_blank" class="github-badge">
+          <span>📦 Repozytorium GitHub</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div class="container footer-bottom-inner">
+        <div>© 2026 MotoMarket Sp. z o.o. Wszelkie prawa zastrzeżone.</div>
+        <div class="footer-legal">
+          <a href="#">Polityka Prywatności</a>
+          <span>•</span>
+          <a href="#">Regulamin</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
