@@ -1,0 +1,66 @@
+name: "Wniosek o dostęp dla praktykanta"
+description: "Zgłoszenie IssueOps do automatycznego nadania ograniczonego czasowo dostępu do repozytorium"
+title: "[Dostęp praktykanta]: @"
+labels: ["intern-request"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ### 🎓 System IssueOps — Zarządzanie Dostępem Praktykantów
+        Po wysłaniu tego zgłoszenia proces GitHub Actions automatycznie:
+        1. Zweryfikuje poprawność loginu użytkownika na GitHubie.
+        2. Wyśle zaproszenie / nada uprawnienia kolaboranta do repozytorium.
+        3. Obliczy datę wygaśnięcia i zapisze ją w pliku stanu `data/interns.json`.
+        4. Doda potwierdzenie w komentarzu i zamknie zgłoszenie.
+        5. Po upływie zadeklarowanej liczby dni automatycznie odbierze uprawnienia.
+
+  - type: input
+    id: username
+    attributes:
+      label: Login praktykanta na GitHubie (GitHub Username)
+      description: Podaj dokładną nazwę użytkownika na GitHubie (np. octocat, bez znaku @).
+      placeholder: "octocat"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Rola / Uprawnienia
+      description: Wybierz poziom uprawnień do repozytorium.
+      options:
+        - "Read (tylko odczyt - pull)"
+        - "Write (odczyt i zapis - push)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: duration
+    attributes:
+      label: Czas dostępu (w dniach)
+      description: Liczba dni, po których dostęp zostanie automatycznie cofnięty.
+      options:
+        - "14"
+        - "30"
+        - "60"
+        - "90"
+    validations:
+      required: true
+
+  - type: input
+    id: target_repo
+    attributes:
+      label: Repozytorium docelowe (opcjonalnie)
+      description: Pozostaw puste dla bieżącego repozytorium lub wpisz pełną ścieżkę w formacie `wlasciciel/repozytorium`.
+      placeholder: "solec-source/moto-market"
+    validations:
+      required: false
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notatki / Cel dostępu (opcjonalnie)
+      description: Dodatkowe informacje o zadaniach praktykanta, zespole lub mentorze prowadzącym.
+      placeholder: "Praktyki semestralne - moduł analizy danych motoryzacyjnych, mentor: @jan..."
+    validations:
+      required: false

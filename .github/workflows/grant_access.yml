@@ -1,0 +1,66 @@
+name: "IssueOps: Nadanie dostępu praktykantowi"
+
+on:
+  issues:
+    types: [opened, labeled]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Numer Issue do ręcznego przetworzenia (np. 1)"
+        required: true
+        type: string
+      dry_run:
+        description: "Tryb testowy na sucho (dry-run, bez modyfikacji GitHub API)"
+        required: false
+        type: boolean
+        default: false
+
+permissions:
+  contents: write
+  issues: write
+
+jobs:
+  grant:
+    name: "Nadanie uprawnień kolaboranta"
+    # Uruchomienie tylko jeśli zgłoszenie zawiera etykietę 'intern-request' lub przy ręcznym wywołaniu
+    if: >
+      (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'intern-request')) ||
+      github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Pobranie kodu repozytorium
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+          fetch-depth: 0
+
+      - name: ⚙️ Konfiguracja Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 🔑 Przetworzenie zgłoszenia i nadanie uprawnień
+        env:
+          GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN || secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+          ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          DRY_RUN: ${{ inputs.dry_run || 'false' }}
+        run: |
+          node .github/scripts/grant_access.js
+
+      - name: 💾 Zapisanie zmian w data/interns.json
+        if: ${{ inputs.dry_run != true }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/interns.json
+          if ! git diff --cached --quiet; then
+            git commit -m "chore(issueops): dodano praktykanta do data/interns.json [skip ci]"
+            git pull --rebase origin main || git pull --rebase
+            git push origin HEAD:main
+          else
+            echo "Brak zmian w pliku data/interns.json."
+          fi
