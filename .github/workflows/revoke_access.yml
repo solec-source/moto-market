@@ -19,6 +19,7 @@ on:
 permissions:
   contents: write
   issues: write
+  administration: write   # wymagane do DELETE /repos/.../collaborators (bez PAT)
 
 jobs:
   revoke:
@@ -39,7 +40,7 @@ jobs:
 
       - name: ⏰ Weryfikacja terminów ważności i odebranie dostępu
         env:
-          GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN || secrets.GITHUB_TOKEN }}
+          GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN != '' && secrets.GH_ADMIN_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           DRY_RUN: ${{ inputs.dry_run || 'false' }}

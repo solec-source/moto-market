@@ -18,6 +18,7 @@ on:
 permissions:
   contents: write
   issues: write
+  administration: write   # wymagane do PUT /repos/.../collaborators (bez PAT)
 
 jobs:
   grant:
@@ -42,7 +43,8 @@ jobs:
 
       - name: 🔑 Przetworzenie zgłoszenia i nadanie uprawnień
         env:
-          GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN || secrets.GITHUB_TOKEN }}
+          # Jeśli GH_ADMIN_TOKEN ustawiony → używa PAT; w przeciwnym razie GITHUB_TOKEN z administration:write wystarczy
+          GH_ADMIN_TOKEN: ${{ secrets.GH_ADMIN_TOKEN != '' && secrets.GH_ADMIN_TOKEN || secrets.GITHUB_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
           ISSUE_NUMBER: ${{ github.event.issue.number || inputs.issue_number }}
